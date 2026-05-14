@@ -1,0 +1,17 @@
+schema_version = "1.0.0"
+
+id = "pixel_unwrapper"
+name = "Pixel Unwrapper"
+tagline = "Pixel-perfect UV unwrapping for pixel art 3D and lo-fi 3D"
+version = "0.4.0"
+type = "add-on"
+
+blender_version_min = "5.0.0"
+
+# Replace [your-username] with your actual GitHub username before publishing
+maintainer = "Community fork — original by Thomas 'noio' van den Berg"
+website = "https://github.com/[your-username]/Pixel-Unwrapper"
+
+license = ["SPDX:MIT"]
+
+tags = ["UV", "Paint"]

@@ -1,17 +1,17 @@
 # MIT License
-
-# Copyright (c) 2023 Thomas van den Berg
-
+#
+# Copyright (c) 2023 Thomas 'noio' van den Berg
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-
+#
 # The above copyright notice and this permission notice shall be included in all
 # copies or substantial portions of the Software.
-
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,16 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-bl_info = {
-    "name": "Pixel Unwrapper",
-    "author": "Thomas 'noio' van den Berg",
-    "description": "",
-    "blender": (4, 3, 0),
-    "version": (0, 3, 0),
-    "location": "",
-    "warning": "",
-    "category": "Generic",
-}
+# NOTE: bl_info has been removed. Blender 5+ uses blender_manifest.toml instead.
+# See: https://docs.blender.org/manual/en/latest/advanced/extensions/addons.html
 
 import bpy
 from . import auto_load
@@ -45,20 +37,18 @@ def register():
         default=16,
         description="",
     )
-
     bpy.types.Scene.pixunwrap_default_texture_size = bpy.props.IntProperty(
         name="Default Texture Size",
         default=64,
         description="This is also used when unwrapping objects that have no texture assigned",
     )
-
     bpy.types.Scene.pixunwrap_texture_fill_color_tl = bpy.props.FloatVectorProperty(
         name="Texture Fill A",
         default=[0.92, 0.69, 0.69],
         description="Color used to fill top left quadrant of empty texture",
         subtype="COLOR",
         min=0,
-        max=1
+        max=1,
     )
     bpy.types.Scene.pixunwrap_texture_fill_color_bl = bpy.props.FloatVectorProperty(
         name="Texture Fill B",
@@ -66,51 +56,45 @@ def register():
         description="Color used to fill bottom left quadrant of empty texture",
         subtype="COLOR",
         min=0,
-        max=1
+        max=1,
     )
-
     bpy.types.Scene.pixunwrap_texture_fill_color_tr = bpy.props.FloatVectorProperty(
         name="Texture Fill C",
         default=[0.64, 0.91, 0.64],
         description="Color used to fill top right quadrant of empty texture",
         subtype="COLOR",
         min=0,
-        max=1
+        max=1,
     )
-    # YELLOW
     bpy.types.Scene.pixunwrap_texture_fill_color_br = bpy.props.FloatVectorProperty(
         name="Texture Fill D",
         default=[1, 0.79, 0.48],
         description="Color used to fill bottom right quadrant of empty texture",
         subtype="COLOR",
         min=0,
-        max=1
+        max=1,
     )
 
     uv_behaviors = (
         ("DESTRUCTIVE", "Destructive", ""),
         ("PRESERVE", "Preserve Texture", ""),
     )
-
     bpy.types.Scene.pixunwrap_uv_behavior = bpy.props.EnumProperty(
         name="UV Change Behavior",
         default=0,
         description="When using UV operators, should the image be modified to preserve texturing",
         items=uv_behaviors,
     )
-
     bpy.types.Scene.pixunwrap_modify_texture = bpy.props.BoolProperty(
         name="Modify Texture",
         default=False,
         description="Should the texture be modified to keep painted pixels in place on the model, or can UV's be moved freely.",
     )
-
     bpy.types.Scene.pixunwrap_fold_sections = bpy.props.IntProperty(
         name="Fold Sections",
         default=2,
         description="How many sections to fold the selected UV grid into.",
     )
-
     bpy.types.Scene.pixunwrap_fold_alternate = bpy.props.BoolProperty(
         name="Fold Alternate",
         default=False,
